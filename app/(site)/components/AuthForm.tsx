@@ -1,13 +1,15 @@
 'use client'
 
 import { useCallback, useState } from "react"
-import { SubmitHandler, FieldValues,useForm } from "react-hook-form";
+import { SubmitHandler, FieldValues,useForm, Form } from "react-hook-form";
+import {Input} from "../../components/inputs/Input.tsx";
+
 
 type Variant = 'LOGIN' | 'REGISTER';
 
 export const AuthForm = () => {
     const [variant, setVariant] = useState<Variant>('LOGIN');
-    const [isLoading, setIsLoading] = useState();
+    const [isLoading, setIsLoading] = useState(false);
     
     const toggleVariant = useCallback(() => {
         if (variant === 'LOGIN') {
@@ -25,12 +27,28 @@ export const AuthForm = () => {
         }
     })
 
-    // const onSubmit: SubmitHandler<FieldValues> = (data) 
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        setIsLoading(true);
+
+        if (variant === 'REGISTER') {
+
+        }
+        if (variant === 'LOGIN') {
+
+        }
+    }
+
+    const socialAction = (action: string) => {
+        setIsLoading(true);
+    }
+
 
     return(
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-
+                <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+                    <Input/>
+                </form>
             </div>
         </div>
     )
